@@ -13,41 +13,7 @@ snippet mainn
 		${0}
 		return 0;
 	}
-##
-## Preprocessor
-# #include <...>
-snippet inc
-	#include <${1:stdio}.h>
-# #include "..."
-snippet Inc
-	#include "${1:`vim_snippets#Filename("$1.h")`}"
-# ifndef...define...endif
-snippet ndef
-	#ifndef $1
-	#define ${1:SYMBOL} ${2:value}
-	#endif /* ifndef $1 */
-# define
-snippet def
-	#define
-# ifdef...endif
-snippet ifdef
-	#ifdef ${1:FOO}
-		${2:#define }
-	#endif
-# if
-snippet #if
-	#if ${1:FOO}
-		${0}
-	#endif
-# header include guard
-snippet once
-	#ifndef ${1:`toupper(vim_snippets#Filename('$1_H', 'UNTITLED_H'))`}
 
-	#define $1
-
-	${0}
-
-	#endif /* end of include guard: $1 */
 ##
 ## Control Statements
 # if
@@ -164,65 +130,4 @@ snippet pr
 # fprintf (again, this isn't as nice as TextMate's version, but it works)
 snippet fpr
 	fprintf(${1:stderr}, "${2:%s}\n"${3});
-# getopt
-snippet getopt
-	int choice;
-	while (1)
-	{
-		static struct option long_options[] =
-		{
-			/* Use flags like so:
-			{"verbose",	no_argument,	&verbose_flag, 'V'}*/
-			/* Argument styles: no_argument, required_argument, optional_argument */
-			{"version", no_argument,	0,	'v'},
-			{"help",	no_argument,	0,	'h'},
-			${1}
-			{0,0,0,0}
-		};
 
-		int option_index = 0;
-
-		/* Argument parameters:
-			no_argument: " "
-			required_argument: ":"
-			optional_argument: "::" */
-
-		choice = getopt_long( argc, argv, "vh",
-					long_options, &option_index);
-
-		if (choice == -1)
-			break;
-
-		switch( choice )
-		{
-			case 'v':
-				${2}
-				break;
-
-			case 'h':
-				${3}
-				break;
-
-			case '?':
-				/* getopt_long will have already printed an error */
-				break;
-
-			default:
-				/* Not sure how to get here... */
-				return EXIT_FAILURE;
-		}
-	}
-
-	/* Deal with non-option arguments here */
-	if ( optind < argc )
-	{
-		while ( optind < argc )
-		{
-			${0}
-		}
-	}
-##
-## Miscellaneous
-# This is kind of convenient
-snippet .
-	[${1}]
