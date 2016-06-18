@@ -10,6 +10,7 @@ snippet newfile
 	#include <bits/stdc++.h>
 	#define IGNORE_CHARS cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 	using namespace std;
+	#include <util/prettyprint.hpp>
 	int main(){
 		std::ios_base::sync_with_stdio(false);
 		${0}
@@ -121,7 +122,7 @@ snippet fori
 	
 # foreach
 snippet fore
-	for (${1:auto&} ${2:i} : ${3:container}) {
+	for (const ${1:auto&} ${2:i} : ${3:container}) {
 		${4}
 	}
 # iterator
