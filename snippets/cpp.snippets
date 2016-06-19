@@ -7,10 +7,16 @@ snippet i_size
 	size_t $1;
 	
 snippet newfile
+	#define DEBUG
 	#include <bits/stdc++.h>
 	#define IGNORE_CHARS cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 	using namespace std;
-	#include <util/prettyprint.hpp>
+	#if defined(DEBUG) && not defined(ONLINE_JUDGE)
+		#include <util/prettyprint.hpp>
+		#define d(arg) cerr << arg << endl;
+	#else
+		#define d(arg)
+	#endif
 	int main(){
 		std::ios_base::sync_with_stdio(false);
 		${0}
