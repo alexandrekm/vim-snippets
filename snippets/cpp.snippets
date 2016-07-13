@@ -14,8 +14,16 @@ snippet newfile
 	#if defined(DEBUG) && not defined(ONLINE_JUDGE)
 		#include <util/prettyprint.hpp>
 		#define d(arg) cerr << arg << endl;
+		void d2(const char* format, ...)
+		{
+			va_list argptr;
+			va_start(argptr, format);
+			vprintf(stderr, format, argptr);
+			va_end(argptr);
+		}
 	#else
 		#define d(arg)
+		void d2(const char* format, ...){}
 	#endif
 	int main(){
 		std::ios_base::sync_with_stdio(false);
@@ -122,7 +130,12 @@ snippet cca
 ## Iteration
 # for i
 snippet fori
-	for (size_t ${2:i} = 0; $2 < ${1:count}; $2${3:++}) {
+	for (int ${2:i} = 0; $2 < ${1:count}; ++$2${3:}) {
+		${4}
+	}
+# for ui
+snippet forui
+	for (size_t ${2:i} = 0; $2 < ${1:count}; ++$2${3:}) {
 		${4}
 	}
 	

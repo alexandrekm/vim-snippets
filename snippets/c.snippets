@@ -103,10 +103,18 @@ snippet td
 	typedef ${1:int} ${2:MyCustomType};
 # struct
 snippet struct
-	struct ${1} {
-		${2:/* data */}
-		friend ostream& operator<<(ostream&os, const ${1}& st);
-	}${3: /* optional variable list */};
+	struct ${1:`vim_snippets#Filename('$1', 'name')`}
+	{
+		$1(${2})
+		{
+		}
+		~$1()
+		{
+		}
+		${0:/* data */}
+		bool operator()(int a){return a == 0;};
+		friend ostream& operator<<(ostream& os, const $1& st1);
+	};
 # typedef struct
 snippet tds
 	typedef struct ${2:_$1 }{
