@@ -13,21 +13,20 @@ snippet newfile
 	using namespace std;
 	#if defined(DEBUG) && not defined(ONLINE_JUDGE)
 		#include <util/prettyprint.hpp>
-		#define d(arg) cerr << arg << endl;
-		void d2(const char* format, ...)
-		{
-			va_list argptr;
-			va_start(argptr, format);
-			vprintf(stderr, format, argptr);
-			va_end(argptr);
-		}
+		#include <util/printer.hpp>
+		#define d2(arg) cerr << arg << endl;
+		#define d(arg1, ...) p2_impl(arg1, ##__VA_ARGS__, __LINE__);
 	#else
-		#define d(arg)
-		void d2(const char* format, ...){}
+		#define d2(arg)
+		#define d(...)
 	#endif
 	int main(){
 		std::ios_base::sync_with_stdio(false);
-		${0}
+		string line;
+		while(getline(cin, line) && line != "0")
+		{
+			${0}
+		}
 		return 0;
 	}
 
