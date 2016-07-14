@@ -16,6 +16,7 @@ snippet newfile
 		#include <util/printer.hpp>
 		#define d2(arg) cerr << arg << endl;
 		#define d(arg1, ...) p2_impl(arg1, ##__VA_ARGS__, __LINE__);
+		//template<> const pretty_print::delimiters_values<char> pretty_print::delimiters<std::vector<double>, char>::values = { "< ", " ; ", " >" };
 	#else
 		#define d2(arg)
 		#define d(...)
